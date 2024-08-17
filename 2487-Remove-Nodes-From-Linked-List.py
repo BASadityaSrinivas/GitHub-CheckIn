@@ -6,16 +6,17 @@
 class Solution:
     def removeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # # Solution 1 - Using recursion
-        def recur(prev, cur, maxx):
+        def recur(prev):
+            cur = prev.next
             if not cur.next:
                 return cur.val
-            maxx = max(cur.val, recur(cur, cur.next, maxx))
+            maxx = max(cur.val, recur(cur))
             if cur.val < maxx:
                 prev.next = cur.next
             return maxx
 
         dummy = ListNode(0, head)
-        recur(dummy, dummy.next, 0)
+        recur(dummy)
 
         return dummy.next
         
