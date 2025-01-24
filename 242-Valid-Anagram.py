@@ -1,14 +1,13 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        dic1, dic2 = {}, {}
+        if len(s) != len(t):
+            return False
 
-        for i in s:
-            dic1[i] = dic1.get(i, 0) + 1
+        s = ''.join(sorted(s))
+        t = ''.join(sorted(t))
 
-        for i in t:
-            dic2[i] = dic2.get(i, 0) + 1    
+        for i in range(len(s)):
+            if s[i] != t[i]:
+                return False
         
-        if dic1 == dic2:
-            return True
-        
-        return False
+        return True
